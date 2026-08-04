@@ -236,8 +236,8 @@ ul { list-style: none; }
 .mobile-nav-link { font-size: 1.4rem; font-weight: 500; color: var(--text-dark); }
 .mobile-nav-link:hover { color: var(--accent-dark); }
 
-/* ===== SCRAPBOOK HERO ===== */
-.scrapbook-hero {
+/* ===== BENTO HERO ===== */
+.bento-hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -246,76 +246,83 @@ ul { list-style: none; }
     position: relative;
     z-index: 1;
 }
-.scrapbook-container {
-    position: relative;
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto auto;
+    gap: 20px;
     width: 100%;
     max-width: 1100px;
-    height: 70vh;
-    min-height: 550px;
+    margin-top: 40px;
 }
-.scrap-text-block {
-    position: absolute;
-    top: 15%;
-    left: 2%;
-    background: rgba(254, 249, 244, 0.7);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--border);
-    padding: 3rem;
+
+.bento-item {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
     border-radius: 24px;
-    max-width: 600px;
-    z-index: 2;
-    box-shadow: 0 10px 40px var(--shadow);
-    transform: rotate(-1deg);
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.scrap-image-block {
-    position: absolute;
-    top: 5%;
-    right: 5%;
-    background: #fff;
-    padding: 15px 15px 60px 15px;
+
+.bento-item:hover {
+    transform: translateY(-5px);
     box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-    transform: rotate(3deg);
-    z-index: 1;
-    border-radius: 4px;
-    width: 340px;
-    transition: transform 0.3s ease;
 }
-.scrap-image-block:hover { transform: rotate(5deg) scale(1.02); }
-.polaroid {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    border-radius: 2px;
-}
-.polaroid-caption {
-    font-family: var(--font-accent);
-    font-size: 1.8rem;
-    text-align: center;
-    margin-top: 15px;
-    color: var(--accent-dark);
-    font-style: italic;
-}
-.tape {
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%) rotate(-3deg);
-    width: 130px;
-    height: 35px;
-    background: rgba(255, 255, 255, 0.4);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    backdrop-filter: blur(5px);
-    z-index: 3;
-}
-.scrap-cta {
-    position: absolute;
-    bottom: -5%;
-    left: 10%;
+
+.bento-main {
+    grid-column: span 3;
+    grid-row: span 2;
     display: flex;
-    gap: 15px;
-    z-index: 3;
-    transform: rotate(1deg);
+    flex-direction: column;
+    justify-content: center;
 }
+
+.bento-image {
+    grid-column: span 1;
+    grid-row: span 2;
+    padding: 0;
+    overflow: hidden;
+}
+
+.bento-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.bento-image:hover img {
+    transform: scale(1.05);
+}
+
+.bento-small {
+    grid-column: span 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.bento-small h3 { font-size: 1.1rem; color: var(--accent-dark); margin-bottom: 5px; }
+.bento-small p { color: var(--text-muted); font-size: 0.95rem; font-weight: 500; }
+
+.bento-small.highlight {
+    background: var(--pastel-pink);
+    color: var(--text-dark);
+}
+.bento-small.highlight p { color: var(--text-dark); }
+
+.bento-long {
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4));
+}
+.bento-long p { font-weight: 600; color: var(--accent-dark); font-size: 1.1rem; margin: 0; }
 
 .greeting { color: var(--accent-dark); font-size: 1.1rem; font-weight: 500; margin-bottom: 8px; }
 .name { font-family: var(--font-accent); font-size: clamp(2.8rem, 5vw, 4rem); font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
@@ -323,14 +330,14 @@ ul { list-style: none; }
 .typing-text { color: var(--text-dark); }
 .cursor { display: inline-block; color: var(--pastel-pink); animation: blink 1s infinite; }
 @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
-.bio { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 0px; max-width: 480px; line-height: 1.6; }
+.bio { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 30px; max-width: 480px; line-height: 1.6; }
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
 
 @media (max-width: 900px) {
-    .scrapbook-container { display: flex; flex-direction: column; align-items: center; height: auto; margin-top: 40px; gap: 30px;}
-    .scrap-image-block { position: relative; top: 0; right: 0; transform: rotate(2deg); margin-bottom: 30px; width: 300px; }
-    .scrap-text-block { position: relative; top: 0; left: 0; transform: rotate(0deg); text-align: center; padding: 2rem; width: 90vw;}
-    .scrap-cta { position: relative; bottom: 0; left: 0; justify-content: center; margin-top: 20px; }
-    .bio { margin: 0 auto; }
+    .bento-grid { grid-template-columns: 1fr; }
+    .bento-main { grid-column: span 1; grid-row: auto; }
+    .bento-image { grid-column: span 1; grid-row: auto; height: 300px; }
+    .bento-small, .bento-long { grid-column: span 1; }
 }
 
 /* ===== ABOUT ===== */
